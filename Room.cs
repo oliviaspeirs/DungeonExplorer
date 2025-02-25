@@ -6,15 +6,15 @@ namespace DungeonExplorer
     public class Room
     {
         private static Random rnd = new Random()
-        public string empty;
-        public string SmallMonster;
-        public string BigMonster;
+        public string empty = "empty";
+        public string SmallMonster = "SmallMonster";
+        public string BigMonster = "BigMonster";
         
         private string description;
 
-        public static GetRandomRoom()
+        public static Room GetRandomRoom()
         {
-            int randomNumber = _random.Next(1, 3);
+            int randomNumber = _random.Next(1, 4);
             if (randomNumber == 1)
             {
                 return Room(empty);
@@ -32,9 +32,28 @@ namespace DungeonExplorer
             this.description = description;
         }
 
-        public string GetDescription()
+        public void GetDescription(Player player)
         {
-            return description;
+            switch (description)
+            {
+                case empty:
+                    Console.WriteLine("The room is empty, you are safe!")
+                    break;
+                case SmallMonster:
+                    int damage = rnd.Next(1,11)
+                    player.Health -= damage;
+                    Console.WriteLine("You encounter a small monster, you take some damage")
+                    break;
+                case BigMonster:
+                    damage = rnd.Next(11,21)
+                        player.Health -= damage;
+                    Console.WriteLine("You encounter a big monster, you take lots of damage")
+                    break;
+                default:
+                    Console.WriteLine("error occured")
+                    break;
+
+            }
         }
     }
 }

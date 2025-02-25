@@ -11,7 +11,7 @@ namespace DungeonExplorer
         public Game()
         {
             // Initialize the game with one room and one player
-
+            Player player = new Player("", 0)
         }
         public void Start()
         {
@@ -20,6 +20,10 @@ namespace DungeonExplorer
             while (playing)
             {
                 // Code your playing logic here
+                Console.WriteLine("Enter your name:")
+                string playerName = Console.ReadLine();
+                player.Name = playerName;
+
                 
             }
         }
