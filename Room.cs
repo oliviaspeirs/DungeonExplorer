@@ -32,22 +32,25 @@ namespace DungeonExplorer
             this.description = description;
         }
 
-        public void GetDescription(Player player)
+        public void GetDescription(Player player, ref int currentRoom)
         {
             switch (description)
             {
                 case empty:
                     Console.WriteLine("The room is empty, you are safe!")
+                    currentRooms++;
                     break;
                 case SmallMonster:
                     int damage = rnd.Next(1,11)
                     player.Health -= damage;
                     Console.WriteLine("You encounter a small monster, you take some damage")
+                    currentRooms++;
                     break;
                 case BigMonster:
                     damage = rnd.Next(11,21)
                         player.Health -= damage;
                     Console.WriteLine("You encounter a big monster, you take lots of damage")
+                    currentRooms++;
                     break;
                 default:
                     Console.WriteLine("error occured")
