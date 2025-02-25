@@ -25,6 +25,7 @@ namespace DungeonExplorer
                 string playerName = Console.ReadLine();
                 player.Name = playerName;
                 player.Health = 100;
+                Console.WriteLine($"Player creation successful, hello {player.Name} you are at {player.Health} health.");
 
                 
             }
