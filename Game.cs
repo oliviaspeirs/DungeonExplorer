@@ -20,9 +20,7 @@ namespace DungeonExplorer
             while (playing)
             {
                 // Code your playing logic here
-                Console.WriteLine("Welcome to Dungeon Explorer!");
-                Console.WriteLine("Enter your name: ");
-                Console.ReadLine();
+                
             }
         }
     }
