@@ -1,4 +1,7 @@
-﻿namespace DungeonExplorer
+﻿using System;
+using System.Runtime.InteropServices;
+
+namespace DungeonExplorer
 {
     public class Room
     {
