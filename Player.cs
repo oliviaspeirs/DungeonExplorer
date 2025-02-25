@@ -5,10 +5,12 @@ namespace DungeonExplorer
 {
     public class Player
     {
+        // player attributes
         private string _name;
         private int _health;
         private List<string> _inventory = new List<string>();
 
+        // player constructors
         public Player(string name, int health) 
         {
             _name = name;
@@ -31,6 +33,7 @@ namespace DungeonExplorer
                 }
         }
 
+        //player accessors
         public int Health
         {
             get { return _health; }

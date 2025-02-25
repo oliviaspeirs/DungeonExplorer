@@ -12,18 +12,19 @@ namespace DungeonExplorer
         
         private string description;
 
-        public static GetRandomRoom()
+        public static Room GetRandomRoom()
         {
             int randomNumber = rnd.Next(1, 4);
-            if (randomNumber == 1)
+            switch (randomNumber)
             {
-                return new Room(empty);
-            }else if (randomNumber == 2)
-            {
-                return new Room(SmallMonster);
-            }else
-            {
-                return new Room(BigMonster);
+                case 1:
+                    return new Room(empty);
+                case 2:
+                    return new Room(SmallMonster);
+                case 3:
+                    return new Room(BigMonster);
+                default:
+                    return new Room(empty);
             }
         }
 
