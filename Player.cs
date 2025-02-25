@@ -5,8 +5,8 @@ namespace DungeonExplorer
 {
     public class Player
     {
-        private string _name 
-        private int _health 
+        private string _name;
+        private int _health;
         private List<string> _inventory = new List<string>();
 
         public Player(string name, int health) 
@@ -21,8 +21,8 @@ namespace DungeonExplorer
             set { 
                     if (string.IsNullOrEmpty(value))
                     {
-                        Console.WriteLine("Inavlid input, name set to default player name:")
-                        _name = "defaultPlayer"
+                        Console.WriteLine("Inavlid input, name set to default player name:");
+                        _name = "defaultPlayer";
                     }
                     else
                     {
