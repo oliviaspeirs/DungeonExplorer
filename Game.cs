@@ -54,7 +54,7 @@ namespace DungeonExplorer
                 Console.WriteLine("To start game press any key");
                 Console.ReadKey();
 
-                Console.WriteLine("Your goal: escape the dungeon. \nAlong your journey you will enter a series of rooms. \nSome may be empty but some may contain a monster, in those rooms you will be attacked and will take damage.");
+                Console.WriteLine("Your goal: escape the dungeon. \nAlong your journey you will enter a series of rooms. \nSome may be empty but some may contain a monster. \nIn those rooms you will be attacked and will take damage. \nStay Safe!");
 
                 playing = false;
                 while (currentRooms < 5 && player.Health > 0)
