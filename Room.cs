@@ -41,19 +41,19 @@ namespace DungeonExplorer
             switch (RoomType)
             {
                 case empty:
-                    Console.WriteLine("The room is empty, you are safe!");
+                    Console.WriteLine("The room is empty, you are safe and can move onto the next room!");
                     currentRooms++;
                     break;
                 case SmallMonster:
                     int damage = rnd.Next(10, 21);
                     player.Health -= damage;
-                    Console.WriteLine("You encounter a small monster, you take some damage");
+                    Console.WriteLine($"You encounter a small monster, you take {damage} damage");
                     currentRooms++;
                     break;
                 case BigMonster:
                     damage = rnd.Next(21, 31);
                     player.Health -= damage;
-                    Console.WriteLine("You encounter a big monster, you take lots of damage");
+                    Console.WriteLine($"You encounter a big monster, you take {damage} damage");
                     currentRooms++;
                     break;
                 default:
