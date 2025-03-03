@@ -8,7 +8,7 @@ namespace DungeonExplorer
         // player attributes
         private string _name;
         private int _health;
-        private List<string> _inventory = new List<string>();
+        private List<string> _inventory;
 
         // player constructors
         public Player(string name, int health, List<string> inventory) 
@@ -18,6 +18,7 @@ namespace DungeonExplorer
             _inventory = inventory;
         }
 
+        //player accessors
         public string Name
         {
             get { return _name; }
@@ -34,7 +35,6 @@ namespace DungeonExplorer
                 }
         }
 
-        //player accessors
         public int Health
         {
             get { return _health; }
@@ -58,7 +58,7 @@ namespace DungeonExplorer
 
         public void PickUpItem(string item)
         {
-
+            _inventory.Add(item);
         }
         public string InventoryContents()
         {

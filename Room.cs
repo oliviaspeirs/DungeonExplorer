@@ -37,7 +37,7 @@ namespace DungeonExplorer
             }
         }
 
-        public void GetDescription(Player player, ref int currentRoom)
+        public void GetDescription(Player player, ref int currentRooms)
         {
             switch (RoomType)
             {
