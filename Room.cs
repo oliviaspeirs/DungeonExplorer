@@ -13,7 +13,6 @@ namespace DungeonExplorer
         
         //room accessor
         public string RoomType { get; }
-
         // room constructor
         public Room(string roomType)
         {
@@ -53,7 +52,7 @@ namespace DungeonExplorer
                     break;
                 case BigMonster:
                     damage = rnd.Next(21, 31);
-                        player.Health -= damage;
+                    player.Health -= damage;
                     Console.WriteLine("You encounter a big monster, you take lots of damage");
                     currentRooms++;
                     break;
