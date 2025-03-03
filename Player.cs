@@ -11,10 +11,11 @@ namespace DungeonExplorer
         private List<string> _inventory = new List<string>();
 
         // player constructors
-        public Player(string name, int health) 
+        public Player(string name, int health, List<string> inventory) 
         {
             _name = name;
             _health = health;
+            _inventory = inventory;
         }
 
         public string Name
@@ -61,7 +62,7 @@ namespace DungeonExplorer
         }
         public string InventoryContents()
         {
-            return string.Join(", ", inventory);
+            return string.Join(", ", _inventory);
         }
     }
 }

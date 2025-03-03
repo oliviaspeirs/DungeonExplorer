@@ -11,16 +11,16 @@ namespace DungeonExplorer
         public Game()
         {
             // Initialize the game with one room and one player
-            Player player = new Player("", 0, new List<string>();
+            player = new Player("", 0, new List<string>());
             currentRooms = 0;
         }
 
         public void PlayersGo()
         {
-            Console.WriteLine("Do you wish to go left, right or forward?")
+            Console.WriteLine("Do you wish to go left, right or forward?");
             string decision = Console.ReadLine();
 
-            Room nextRoom
+            Room nextRoom;
 
             switch (decision)
             {
@@ -57,7 +57,7 @@ namespace DungeonExplorer
                 playing = false;
                 while (currentRooms < 5 && player.Health > 0)
                 {
-                    
+                    PlayersGo();
                 }
             }
         }

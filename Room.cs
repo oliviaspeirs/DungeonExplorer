@@ -7,9 +7,9 @@ namespace DungeonExplorer
     {
         // room attributes
         private static Random rnd = new Random();
-        public string empty = "empty";
-        public string SmallMonster = "SmallMonster";
-        public string BigMonster = "BigMonster";
+        public const string empty = "empty";
+        public const string SmallMonster = "SmallMonster";
+        public const string BigMonster = "BigMonster";
         
         //room accessor
         public string RoomType { get; }
@@ -20,7 +20,6 @@ namespace DungeonExplorer
             RoomType = roomType;
         }
 
-        private string description;
 
         public static Room GetRandomRoom()
         {
@@ -36,11 +35,6 @@ namespace DungeonExplorer
                 default:
                     return new Room(empty);
             }
-        }
-
-        public Room(string description)
-        {
-            this.description = description;
         }
 
         public void GetDescription(Player player, ref int currentRoom)
