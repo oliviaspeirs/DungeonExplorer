@@ -5,11 +5,21 @@ namespace DungeonExplorer
 {
     public class Room
     {
+        // room attributes
         private static Random rnd = new Random();
         public string empty = "empty";
         public string SmallMonster = "SmallMonster";
         public string BigMonster = "BigMonster";
         
+        //room accessor
+        public string RoomType { get; }
+
+        // room constructor
+        public Room(string roomType)
+        {
+            RoomType = roomType;
+        }
+
         private string description;
 
         public static Room GetRandomRoom()
@@ -35,7 +45,7 @@ namespace DungeonExplorer
 
         public void GetDescription(Player player, ref int currentRoom)
         {
-            switch (description)
+            switch (RoomType)
             {
                 case empty:
                     Console.WriteLine("The room is empty, you are safe!");
