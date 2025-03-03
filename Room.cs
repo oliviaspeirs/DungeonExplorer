@@ -46,13 +46,13 @@ namespace DungeonExplorer
                     currentRooms++;
                     break;
                 case SmallMonster:
-                    int damage = rnd.Next(1, 11);
+                    int damage = rnd.Next(10, 21);
                     player.Health -= damage;
                     Console.WriteLine("You encounter a small monster, you take some damage");
                     currentRooms++;
                     break;
                 case BigMonster:
-                    damage = rnd.Next(11, 21);
+                    damage = rnd.Next(21, 31);
                         player.Health -= damage;
                     Console.WriteLine("You encounter a big monster, you take lots of damage");
                     currentRooms++;
