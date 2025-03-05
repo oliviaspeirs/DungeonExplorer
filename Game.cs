@@ -12,11 +12,14 @@ namespace DungeonExplorer
 
         public Game()
         {
-            // Initialize the game with one room and one player
+            // Creates a new player and a way of keeping track of rooms entered
             player = new Player("", 0, new List<string>());
             currentRooms = 0;
         }
 
+        // function that allows player to choose a direction
+        // this function calls the GetRandomRoom and GetDescription functions to provide
+        // a  room for the player to enter 
         public void PlayersGo()
         {
             Console.WriteLine("Do you wish to go left, right or forward?");
@@ -27,7 +30,11 @@ namespace DungeonExplorer
             switch (decision)
             {
                 case "forward":
+                    nextRoom = Room.GetRandomRoom();
+                    break;
                 case "left":
+                    nextRoom = Room.GetRandomRoom();
+                    break;
                 case "right":
                     nextRoom = Room.GetRandomRoom();
                     break;
@@ -38,9 +45,26 @@ namespace DungeonExplorer
             nextRoom.GetDescription(player, ref currentRooms);
         }
 
+        public void itemCheck()
+        {
+            int randomNumber = rnd.Next(1, 4)
+            switch (randomNumber)
+            {
+                case 1:
+                    Console.WriteLine("You've picked up a small health potion. \nYou can use this at the beginning of your turns.");
+                    
+                    break;
+                case 2:
+                    Console.WriteLine("You've picked up a regular health potion. \nYou can use this at the beginning of your turns.");
+                    break;
+                case 3:
+                    break;
+
+            }
+        }
+
         public void Start()
         {
-            // Change the playing logic into true and populate the while loop
             bool playing = true;
             while (playing)
             {
@@ -54,8 +78,10 @@ namespace DungeonExplorer
                 Console.WriteLine("To start game press any key");
                 Console.ReadKey();
 
+                // game explanation
                 Console.WriteLine("Your goal: escape the dungeon. \nAlong your journey you will enter a series of rooms. \nSome may be empty but some may contain a monster. \nIn those rooms you will be attacked and will take damage. \nStay Safe!");
 
+                // start of actual game loop
                 playing = false;
                 while (currentRooms < 5 && player.Health > 0)
                 {
@@ -75,6 +101,7 @@ namespace DungeonExplorer
                             break;
                     }
                 }
+                // when the game ends it determines whether you escaped or not based on your health
                 if (player.Health <= 0)
                 {
                     Console.WriteLine("You died");

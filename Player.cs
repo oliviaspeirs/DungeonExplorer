@@ -35,6 +35,7 @@ namespace DungeonExplorer
                 }
         }
 
+        // sets the players health value and if it dips below 0 it just sets it to 0
         public int Health
         {
             get { return _health; }
