@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Media;
 using System.Security.Authentication;
 
@@ -24,7 +25,7 @@ namespace DungeonExplorer
         public void PlayersGo()
         {
             Console.WriteLine("Do you wish to go left, right or forward?");
-            string decision = Console.ReadLine();
+            string decision = Console.ReadLine().ToLower();
 
             Room nextRoom;
 
@@ -67,6 +68,52 @@ namespace DungeonExplorer
                 case 3:
                     break;
 
+            }
+        }
+
+        public void useItem()
+        {
+            Console.WriteLine("Would you like to use any of your items? y/n");
+            string useItemAnswer = Console.ReadLine().ToLower();
+            switch (useItemAnswer)
+            {
+                case "y":
+                    Console.WriteLine("What item do you wish to use? S/R");
+                    string itemChoice = Console.ReadLine().ToUpper();
+                    if (player.CheckInventory(itemChoice) == true)
+                    {
+                        if (itemChoice == "S") 
+                        {
+                            if (player.Health >= 95)
+                            {
+                                Console.WriteLine("Your health is too high to use this potion");
+                            }
+                            else
+                            {
+                                    player.Health += 5;
+                                    player.Inventory.Remove(itemChoice);
+                            }
+                        }
+
+                        if (itemChoice == "R")
+                        {
+                            if (player.Health >= 90)
+                            {
+                                Console.WriteLine("Your health is too high to use this potion");
+                            }
+                            else
+                            {
+                                player.Health += 10;
+                                player.Inventory.Remove(itemChoice);
+                            }
+                        }
+
+                    }
+                    break;
+                case "n":
+                    break;
+                default : 
+                    break;
             }
         }
 
