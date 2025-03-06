@@ -24,7 +24,7 @@ namespace DungeonExplorer
         // a  room for the player to enter 
         public void PlayersGo()
         {
-            Console.WriteLine("Do you wish to go left, right or forward?");
+            Console.WriteLine("\nDo you wish to go left, right or forward?");
             string decision = Console.ReadLine().ToLower();
 
             Room nextRoom;
@@ -73,47 +73,35 @@ namespace DungeonExplorer
 
         public void useItem()
         {
-            Console.WriteLine("Would you like to use any of your items? y/n");
-            string useItemAnswer = Console.ReadLine().ToLower();
-            switch (useItemAnswer)
+            Console.WriteLine("\nWhat item do you wish to use? S/R");
+            string itemChoice = Console.ReadLine().ToUpper();
+            if (player.CheckInventory(itemChoice) == true)
             {
-                case "y":
-                    Console.WriteLine("What item do you wish to use? S/R");
-                    string itemChoice = Console.ReadLine().ToUpper();
-                    if (player.CheckInventory(itemChoice) == true)
+                if (itemChoice == "S")
+                {
+                    if (player.Health >= 95)
                     {
-                        if (itemChoice == "S") 
-                        {
-                            if (player.Health >= 95)
-                            {
-                                Console.WriteLine("Your health is too high to use this potion");
-                            }
-                            else
-                            {
-                                    player.Health += 5;
-                                    player.Inventory.Remove(itemChoice);
-                            }
-                        }
-
-                        if (itemChoice == "R")
-                        {
-                            if (player.Health >= 90)
-                            {
-                                Console.WriteLine("Your health is too high to use this potion");
-                            }
-                            else
-                            {
-                                player.Health += 10;
-                                player.Inventory.Remove(itemChoice);
-                            }
-                        }
-
+                        Console.WriteLine("Your health is too high to use this potion");
                     }
-                    break;
-                case "n":
-                    break;
-                default : 
-                    break;
+                    else
+                    {
+                        player.Health += 5;
+                        player.Inventory.Remove(itemChoice);
+                    }
+                }
+                else if (itemChoice == "R")
+                {
+                    if (player.Health >= 90)
+                    {
+                        Console.WriteLine("Your health is too high to use this potion");
+                    }
+                    else
+                    {
+                        player.Health += 10;
+                        player.Inventory.Remove(itemChoice);
+                    }
+                }
+
             }
         }
 
@@ -133,14 +121,20 @@ namespace DungeonExplorer
                 Console.ReadKey();
 
                 // game explanation
-                Console.WriteLine("Your goal: escape the dungeon. \nAlong your journey you will enter a series of rooms. \nSome may be empty but some may contain a monster. \nIn those rooms you will be attacked and will take damage. \nStay Safe!");
+                Console.WriteLine("\nYour goal: escape the dungeon. " +
+                    "\nAlong your journey you will enter a series of rooms. " +
+                    "\nSome may be empty but some may contain a monster. " +
+                    "\nIn those rooms you will be attacked and will take damage. " +
+                    "\nYou may also occasionally obtain items. " +
+                    "\nThese can be used at the beginning of each turn." +
+                    $"\nStay Safe {player.Name}!");
 
                 // start of actual game loop
                 playing = false;
                 while (currentRooms < 5 && player.Health > 0)
                 {
                     PlayersGo();
-                    Console.WriteLine("Do you wish to see your stats? y/n");
+                    Console.WriteLine("\nDo you wish to see your stats? y/n");
                     string statsAnswer = Console.ReadLine();
                     switch (statsAnswer)
                     {
@@ -154,7 +148,7 @@ namespace DungeonExplorer
                             Console.ReadKey();
                             break;
                     }
-                    Console.WriteLine("Do you wish to see your inventory? y/n");
+                    Console.WriteLine("\nDo you wish to see your inventory? y/n");
                     string inventoryAnswer = Console.ReadLine();
                     switch (inventoryAnswer)
                     {
@@ -166,6 +160,19 @@ namespace DungeonExplorer
                         default:
                             Console.WriteLine("Press any key to continue.");
                             Console.ReadKey();
+                            break;
+                    }
+
+                    Console.WriteLine("\nAnd finally before you move on: \nDo you wish to use an item in your inventory? y/n");
+                    string itemAnswer = Console.ReadLine();
+                    switch (itemAnswer)
+                    {
+                        case "y":
+                            useItem();
+                            break;
+                        case "n":
+                            break;
+                        default:
                             break;
                     }
                 }
