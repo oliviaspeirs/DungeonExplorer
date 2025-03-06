@@ -105,6 +105,10 @@ namespace DungeonExplorer
                 }
 
             }
+            else
+            {
+                Console.WriteLine("You do not have that item in your inventory.");
+            }
         }
 
         public void Start()
