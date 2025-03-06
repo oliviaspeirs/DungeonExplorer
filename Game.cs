@@ -58,11 +58,11 @@ namespace DungeonExplorer
             switch (randomNumber)
             {
                 case 1:
-                    Console.WriteLine("You've picked up a small health potion (S). \nYou can use this at the beginning of your turns.");
+                    Console.WriteLine("You've picked up a small health potion (S).");
                     player.PickUpItem("S");
                     break;
                 case 2:
-                    Console.WriteLine("You've picked up a regular health potion (R). \nYou can use this at the beginning of your turns.");
+                    Console.WriteLine("You've picked up a regular health potion (R).");
                     player.PickUpItem("R");
                     break;
                 case 3:
@@ -86,6 +86,7 @@ namespace DungeonExplorer
                     else
                     {
                         player.Health += 5;
+                        Console.WriteLine($"You have gained 5 health, you are now at {player.Health} health.");
                         player.Inventory.Remove(itemChoice);
                     }
                 }
@@ -98,6 +99,7 @@ namespace DungeonExplorer
                     else
                     {
                         player.Health += 10;
+                        Console.WriteLine($"You have gained 10 health, you are now at {player.Health} health.");
                         player.Inventory.Remove(itemChoice);
                     }
                 }
@@ -134,12 +136,12 @@ namespace DungeonExplorer
                 while (currentRooms < 5 && player.Health > 0)
                 {
                     PlayersGo();
-                    Console.WriteLine("\nDo you wish to see your stats? y/n");
+                    Console.WriteLine("\nView your stats? y/n");
                     string statsAnswer = Console.ReadLine();
                     switch (statsAnswer)
                     {
                         case "y":
-                            Console.WriteLine($"your health is {player.Health} \nand you have been in {currentRooms} rooms");
+                            Console.WriteLine($"{player.Name}, your health is {player.Health} \nand you have been in {currentRooms} rooms");
                             break;
                         case "n":
                             break;
@@ -148,7 +150,7 @@ namespace DungeonExplorer
                             Console.ReadKey();
                             break;
                     }
-                    Console.WriteLine("\nDo you wish to see your inventory? y/n");
+                    Console.WriteLine("\nView your inventory? y/n");
                     string inventoryAnswer = Console.ReadLine();
                     switch (inventoryAnswer)
                     {
