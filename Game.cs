@@ -9,6 +9,7 @@ namespace DungeonExplorer
     {
         private Player player;
         private int currentRooms;
+        private static Random rnd = new Random();
 
         public Game()
         {
@@ -31,12 +32,15 @@ namespace DungeonExplorer
             {
                 case "forward":
                     nextRoom = Room.GetRandomRoom();
+                    itemCheck();
                     break;
                 case "left":
                     nextRoom = Room.GetRandomRoom();
+                    itemCheck();
                     break;
                 case "right":
                     nextRoom = Room.GetRandomRoom();
+                    itemCheck();
                     break;
                 default:
                     Console.WriteLine("Invalid input, try again");
@@ -45,17 +49,20 @@ namespace DungeonExplorer
             nextRoom.GetDescription(player, ref currentRooms);
         }
 
+        // randomly decides whether a room contains an item
         public void itemCheck()
         {
-            int randomNumber = rnd.Next(1, 4)
+
+            int randomNumber = rnd.Next(1, 4);
             switch (randomNumber)
             {
                 case 1:
-                    Console.WriteLine("You've picked up a small health potion. \nYou can use this at the beginning of your turns.");
-                    
+                    Console.WriteLine("You've picked up a small health potion (S). \nYou can use this at the beginning of your turns.");
+                    player.PickUpItem("S");
                     break;
                 case 2:
-                    Console.WriteLine("You've picked up a regular health potion. \nYou can use this at the beginning of your turns.");
+                    Console.WriteLine("You've picked up a regular health potion (R). \nYou can use this at the beginning of your turns.");
+                    player.PickUpItem("R");
                     break;
                 case 3:
                     break;
@@ -97,6 +104,20 @@ namespace DungeonExplorer
                             break;
                         default:
                             Console.WriteLine("Press any key to continue the game.");
+                            Console.ReadKey();
+                            break;
+                    }
+                    Console.WriteLine("Do you wish to see your inventory? y/n");
+                    string inventoryAnswer = Console.ReadLine();
+                    switch (inventoryAnswer)
+                    {
+                        case "y":
+                            Console.WriteLine(player.InventoryContents());
+                            break;
+                        case "n":
+                            break;
+                        default:
+                            Console.WriteLine("Press any key to continue.");
                             Console.ReadKey();
                             break;
                     }
