@@ -137,7 +137,7 @@ namespace DungeonExplorer
                 {
                     PlayersGo();
                     Console.WriteLine("\nView your stats? y/n");
-                    string statsAnswer = Console.ReadLine();
+                    string statsAnswer = Console.ReadLine().ToLower();
                     switch (statsAnswer)
                     {
                         case "y":
@@ -145,19 +145,25 @@ namespace DungeonExplorer
                             break;
                         case "n":
                             break;
+                        case "":
+                            Console.WriteLine("Blank input, input taken as n");
+                            break;
                         default:
                             Console.WriteLine("Press any key to continue the game.");
                             Console.ReadKey();
                             break;
                     }
                     Console.WriteLine("\nView your inventory? y/n");
-                    string inventoryAnswer = Console.ReadLine();
+                    string inventoryAnswer = Console.ReadLine().ToLower();
                     switch (inventoryAnswer)
                     {
                         case "y":
                             Console.WriteLine(player.InventoryContents());
                             break;
                         case "n":
+                            break;
+                        case "":
+                            Console.WriteLine("Blank input, input taken as n");
                             break;
                         default:
                             Console.WriteLine("Press any key to continue.");
@@ -166,13 +172,16 @@ namespace DungeonExplorer
                     }
 
                     Console.WriteLine("\nAnd finally before you move on: \nDo you wish to use an item in your inventory? y/n");
-                    string itemAnswer = Console.ReadLine();
+                    string itemAnswer = Console.ReadLine().ToLower();
                     switch (itemAnswer)
                     {
                         case "y":
                             useItem();
                             break;
                         case "n":
+                            break;
+                        case "":
+                            Console.WriteLine("Blank input, input taken as n");
                             break;
                         default:
                             break;
