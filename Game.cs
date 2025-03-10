@@ -12,6 +12,9 @@ namespace DungeonExplorer
         private int currentRooms;
         private static Random rnd = new Random();
 
+        public const string SmallHealthPotion = "S";
+        public const string RegularHealthPotion = "R";
+
         public Game()
         {
             // Creates a new player and a way of keeping track of rooms entered
@@ -53,11 +56,11 @@ namespace DungeonExplorer
             {
                 case 1:
                     Console.WriteLine("You've picked up a small health potion (S).");
-                    player.PickUpItem("S");
+                    player.PickUpItem(SmallHealthPotion);
                     break;
                 case 2:
                     Console.WriteLine("You've picked up a regular health potion (R).");
-                    player.PickUpItem("R");
+                    player.PickUpItem(RegularHealthPotion);
                     break;
                 case 3:
                     break;
