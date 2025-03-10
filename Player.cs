@@ -68,16 +68,7 @@ namespace DungeonExplorer
 
         public bool CheckInventory(string item)
         {
-            bool containsItem = false;
-            if (_inventory.Contains(item))
-            {
-                containsItem = true;
-            }
-            else
-            {
-                containsItem = false;
-            }
-            return containsItem;
+            return _inventory.Contains(item);
         }
     }
 }
