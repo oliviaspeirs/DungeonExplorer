@@ -38,13 +38,16 @@ namespace DungeonExplorer
                 case "left":
                 case "right":
                     nextRoom = Room.GetRandomRoom();
-                    itemCheck();
+                    itemCheck();    
                     break;
                 default:
                     Console.WriteLine("Invalid input, try again");
                     return;
             }
             nextRoom.GetDescription(player, ref currentRooms);
+            viewStats();
+            viewInventory();
+            useItemChoice();
         }
 
         // randomly decides whether a room contains an item
@@ -63,7 +66,7 @@ namespace DungeonExplorer
                     player.PickUpItem(RegularHealthPotion);
                     break;
                 case 3:
-                    break;
+                    return;
 
             }
         }
@@ -108,6 +111,67 @@ namespace DungeonExplorer
             }
         }
 
+        public void viewStats()
+        {
+            Console.WriteLine("\nView your stats? y/n");
+            string statsAnswer = Console.ReadLine().ToLower();
+            switch (statsAnswer)
+            {
+                case "y":
+                    Console.WriteLine($"{player.Name}, your health is {player.Health} \nand you have been in {currentRooms} rooms");
+                    break;
+                case "n":
+                    break;
+                case "":
+                    Console.WriteLine("Blank input, input taken as n");
+                    break;
+                default:
+                    Console.WriteLine("Press any key to continue the game.");
+                    Console.ReadKey();
+                    break;
+            }
+        }
+
+        public void viewInventory()
+        {
+            Console.WriteLine("\nView your inventory? y/n");
+            string inventoryAnswer = Console.ReadLine().ToLower();
+            switch (inventoryAnswer)
+            {
+                case "y":
+                    Console.WriteLine(player.InventoryContents());
+                    break;
+                case "n":
+                    break;
+                case "":
+                    Console.WriteLine("Blank input, input taken as n");
+                    break;
+                default:
+                    Console.WriteLine("Press any key to continue.");
+                    Console.ReadKey();
+                    break;
+            }
+        }
+
+        public void useItemChoice()
+        {
+            Console.WriteLine("\nAnd finally before you move on: \nDo you wish to use an item in your inventory? y/n");
+            string itemAnswer = Console.ReadLine().ToLower();
+            switch (itemAnswer)
+            {
+                case "y":
+                    useItem();
+                    break;
+                case "n":
+                    break;
+                case "":
+                    Console.WriteLine("Blank input, input taken as n");
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public void Start()
         {
             bool playing = true;
@@ -137,56 +201,8 @@ namespace DungeonExplorer
                 while (currentRooms < 5 && player.Health > 0)
                 {
                     PlayersGo();
-                    Console.WriteLine("\nView your stats? y/n");
-                    string statsAnswer = Console.ReadLine().ToLower();
-                    switch (statsAnswer)
-                    {
-                        case "y":
-                            Console.WriteLine($"{player.Name}, your health is {player.Health} \nand you have been in {currentRooms} rooms");
-                            break;
-                        case "n":
-                            break;
-                        case "":
-                            Console.WriteLine("Blank input, input taken as n");
-                            break;
-                        default:
-                            Console.WriteLine("Press any key to continue the game.");
-                            Console.ReadKey();
-                            break;
-                    }
-                    Console.WriteLine("\nView your inventory? y/n");
-                    string inventoryAnswer = Console.ReadLine().ToLower();
-                    switch (inventoryAnswer)
-                    {
-                        case "y":
-                            Console.WriteLine(player.InventoryContents());
-                            break;
-                        case "n":
-                            break;
-                        case "":
-                            Console.WriteLine("Blank input, input taken as n");
-                            break;
-                        default:
-                            Console.WriteLine("Press any key to continue.");
-                            Console.ReadKey();
-                            break;
-                    }
 
-                    Console.WriteLine("\nAnd finally before you move on: \nDo you wish to use an item in your inventory? y/n");
-                    string itemAnswer = Console.ReadLine().ToLower();
-                    switch (itemAnswer)
-                    {
-                        case "y":
-                            useItem();
-                            break;
-                        case "n":
-                            break;
-                        case "":
-                            Console.WriteLine("Blank input, input taken as n");
-                            break;
-                        default:
-                            break;
-                    }
+                    
                 }
                 // when the game ends it determines whether you escaped or not based on your health
                 if (player.Health <= 0)
