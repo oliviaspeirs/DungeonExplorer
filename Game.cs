@@ -122,9 +122,6 @@ namespace DungeonExplorer
                     break;
                 case "n":
                     break;
-                case "":
-                    Console.WriteLine("Blank input, input taken as n");
-                    break;
                 default:
                     Console.WriteLine("Press any key to continue the game.");
                     Console.ReadKey();
