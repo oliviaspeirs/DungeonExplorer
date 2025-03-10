@@ -32,13 +32,7 @@ namespace DungeonExplorer
             switch (decision)
             {
                 case "forward":
-                    nextRoom = Room.GetRandomRoom();
-                    itemCheck();
-                    break;
                 case "left":
-                    nextRoom = Room.GetRandomRoom();
-                    itemCheck();
-                    break;
                 case "right":
                     nextRoom = Room.GetRandomRoom();
                     itemCheck();
