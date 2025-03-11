@@ -10,8 +10,8 @@ namespace DungeonExplorer
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
-            game.Start();
+            Game game = new Game(); // Create new game object
+            game.Start(); //Start game by calling the start function
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }

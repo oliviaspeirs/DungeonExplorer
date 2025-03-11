@@ -8,23 +8,23 @@ namespace DungeonExplorer
 {
     internal class Game
     {
-        private Player player;
-        private int currentRooms;
+        private Player player; // Player object
+        private int currentRooms; // number of rooms passed
         private static Random rnd = new Random();
 
+        // Defines the different items you can pick up
         public const string SmallHealthPotion = "S";
         public const string RegularHealthPotion = "R";
 
         public Game()
         {
-            // Creates a new player and a way of keeping track of rooms entered
+            // Creates a new player and defaults number of rooms passed to 0
             player = new Player("", 0, new List<string>());
             currentRooms = 0;
         }
 
         // function that allows player to choose a direction
-        // this function calls the GetRandomRoom and GetDescription functions to provide
-        // a  room for the player to enter 
+        // provides a random room for the player to enter 
         public void PlayersGo()
         {
             Console.WriteLine("\nDo you wish to go left, right or forward?");
@@ -32,6 +32,7 @@ namespace DungeonExplorer
 
             Room nextRoom;
 
+            // chooses the next room based on users choice of direction
             switch (decision)
             {
                 case "forward":
@@ -59,11 +60,11 @@ namespace DungeonExplorer
             {
                 case 1:
                     Console.WriteLine("You've picked up a small health potion (S).");
-                    player.PickUpItem(SmallHealthPotion);
+                    player.PickUpItem(SmallHealthPotion); // adds item to inventory
                     break;
                 case 2:
                     Console.WriteLine("You've picked up a regular health potion (R).");
-                    player.PickUpItem(RegularHealthPotion);
+                    player.PickUpItem(RegularHealthPotion); //adds item to inventory
                     break;
                 case 3:
                     return;
@@ -71,14 +72,20 @@ namespace DungeonExplorer
             }
         }
 
+        // This function gives the player the choice whether or not to use an item
         public void useItem()
         {
             Console.WriteLine("\nWhat item do you wish to use? S/R");
             string itemChoice = Console.ReadLine().ToUpper();
+
+            // First if statement checks if the user input is actually in the inventory
             if (player.CheckInventory(itemChoice) == true)
             {
+                // Second if statement checks whether the user typed "S" or "R"
                 if (itemChoice == "S")
                 {
+                    // Third if statement checks if the player is damaged enough to use the item
+                    // If they are, the designated amount of health is added
                     if (player.Health >= 95)
                     {
                         Console.WriteLine("Your health is too high to use this potion");
@@ -87,7 +94,7 @@ namespace DungeonExplorer
                     {
                         player.Health += 5;
                         Console.WriteLine($"You have gained 5 health, you are now at {player.Health} health.");
-                        player.Inventory.Remove(itemChoice);
+                        player.Inventory.Remove(itemChoice); 
                     }
                 }
                 else if (itemChoice == "R")
@@ -111,6 +118,7 @@ namespace DungeonExplorer
             }
         }
 
+        // Gives the user the choice to view their stats
         public void viewStats()
         {
             Console.WriteLine("\nView your stats? y/n");
@@ -129,6 +137,7 @@ namespace DungeonExplorer
             }
         }
 
+        // Gives the user the choice to view the items in their inventory
         public void viewInventory()
         {
             Console.WriteLine("\nView your inventory? y/n");
@@ -147,6 +156,7 @@ namespace DungeonExplorer
             }
         }
 
+        // Gives the user the choice to use an item in their inventory
         public void useItemChoice()
         {
             Console.WriteLine("\nAnd finally before you move on: \nDo you wish to use an item in your inventory? y/n");
@@ -154,7 +164,7 @@ namespace DungeonExplorer
             switch (itemAnswer)
             {
                 case "y":
-                    useItem();
+                    useItem(); // Lets user pick what item to use
                     break;
                 case "n":
                     break;
@@ -163,12 +173,14 @@ namespace DungeonExplorer
             }
         }
 
+        // Starts the actual game play
         public void Start()
         {
             bool playing = true;
             while (playing)
             {
-                // player set up
+                // Player set up
+                // Asks for name and then provides default values for health and inventory
                 Console.WriteLine("Enter your name:");
                 string playerName = Console.ReadLine();
                 player.Name = playerName;
@@ -178,7 +190,7 @@ namespace DungeonExplorer
                 Console.WriteLine("To start game press any key");
                 Console.ReadKey();
 
-                // game explanation
+                // Game explanation
                 Console.WriteLine("\nYour goal: escape the dungeon. " +
                     "\nAlong your journey you will enter a series of rooms. " +
                     "\nSome may be empty but some may contain a monster. " +
@@ -188,6 +200,7 @@ namespace DungeonExplorer
                     $"\nStay Safe {player.Name}!");
 
                 // start of actual game loop
+                // loops until they escape the maze or their health drops to 0
                 playing = false;
                 while (currentRooms < 5 && player.Health > 0)
                 {
@@ -195,7 +208,7 @@ namespace DungeonExplorer
 
                     
                 }
-                // when the game ends it determines whether you escaped or not based on your health
+                // when the game loop ends it determines whether you escaped or not based on your health
                 if (player.Health <= 0)
                 {
                     Console.WriteLine("You died");
