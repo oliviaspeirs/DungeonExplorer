@@ -203,6 +203,10 @@ namespace DungeonExplorer
                 player.Name = playerName;
                 player.Health = 100;
                 player.Inventory = new List<string>();
+
+                Test PlayerTest = new Test(player);
+                PlayerTest.PlayerTesting();
+
                 Console.WriteLine($"Player creation successful, hello {player.Name} you are at {player.Health} health.");
                 Console.WriteLine("To start game press any key");
                 Console.ReadKey();

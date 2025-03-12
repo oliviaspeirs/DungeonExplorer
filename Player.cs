@@ -37,7 +37,7 @@ namespace DungeonExplorer
                     if (string.IsNullOrEmpty(value)) // If player input is empty
                     {
                         Console.WriteLine("Inavlid input, name set to default player name:");
-                        _name = "defaultPlayer"; // Defaults the name to "defaultPlayer""
+                        //_name = "defaultPlayer"; // Defaults the name to "defaultPlayer""
                     }
                     else
                     {
