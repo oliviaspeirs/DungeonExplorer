@@ -141,7 +141,7 @@ namespace DungeonExplorer
                 case "n":
                     break;
                 default:
-                    Console.WriteLine("Press any key to continue the game.");
+                    Console.WriteLine("Invalid input, answer taken as no \nPress any key to continue the game.");
                     Console.ReadKey();
                     break;
             }
@@ -162,7 +162,7 @@ namespace DungeonExplorer
                 case "n":
                     break;
                 default:
-                    Console.WriteLine("Press any key to continue.");
+                    Console.WriteLine("Invalid input, answer taken as no \nPress any key to continue.");
                     Console.ReadKey();
                     break;
             }
@@ -183,6 +183,7 @@ namespace DungeonExplorer
                 case "n":
                     break;
                 default:
+                    Console.WriteLine("Invalid input, answer taken as no \nPress any key to continue.");
                     break;
             }
         }
