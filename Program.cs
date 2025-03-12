@@ -8,11 +8,13 @@ namespace DungeonExplorer
 {
     internal class Program
     {
+        // <summary>
+        // main method, initalises the game and runs it
+        // </summary>
         static void Main(string[] args)
         {
-            Game game = new Game();
-            game.Start();
-            Console.WriteLine("Waiting for your Implementation");
+            Game game = new Game(); // Create new game object
+            game.Start(); //Start game by calling the start function
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
