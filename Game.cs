@@ -12,7 +12,9 @@ namespace DungeonExplorer
         private int currentRooms; // number of rooms passed
         private static Random rnd = new Random();
 
+        // <summary>
         // Defines the different items you can pick up
+        // </summary>
         public const string SmallHealthPotion = "S";
         public const string RegularHealthPotion = "R";
 
@@ -23,8 +25,10 @@ namespace DungeonExplorer
             currentRooms = 0;
         }
 
+        // <summary>
         // function that allows player to choose a direction
         // provides a random room for the player to enter 
+        // </summary>
         public void PlayersGo()
         {
             Console.WriteLine("\nDo you wish to go left, right or forward?");
@@ -51,7 +55,9 @@ namespace DungeonExplorer
             useItemChoice();
         }
 
+        // <summary>
         // randomly decides whether a room contains an item
+        // </summary>
         public void itemCheck()
         {
 
@@ -72,7 +78,9 @@ namespace DungeonExplorer
             }
         }
 
+        // <summary>
         // This function gives the player the choice whether or not to use an item
+        // </summary>
         public void useItem()
         {
             Console.WriteLine("\nWhat item do you wish to use? S/R");
@@ -118,7 +126,9 @@ namespace DungeonExplorer
             }
         }
 
+        // <summary>
         // Gives the user the choice to view their stats
+        // </summary>
         public void viewStats()
         {
             Console.WriteLine("\nView your stats? y/n");
@@ -137,7 +147,9 @@ namespace DungeonExplorer
             }
         }
 
+        // <summary>
         // Gives the user the choice to view the items in their inventory
+        // </summary>
         public void viewInventory()
         {
             Console.WriteLine("\nView your inventory? y/n");
@@ -156,7 +168,9 @@ namespace DungeonExplorer
             }
         }
 
+        // <summary>
         // Gives the user the choice to use an item in their inventory
+        // </summary>
         public void useItemChoice()
         {
             Console.WriteLine("\nAnd finally before you move on: \nDo you wish to use an item in your inventory? y/n");
@@ -173,7 +187,9 @@ namespace DungeonExplorer
             }
         }
 
+        // <summary>
         // Starts the actual game play
+        // </summary>
         public void Start()
         {
             bool playing = true;

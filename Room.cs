@@ -5,25 +5,34 @@ namespace DungeonExplorer
 {
     public class Room
     {
+        // <summary>
         // Room attributes
         // Defines the different types of rooms
+        // </summary>
         private static Random rnd = new Random();
         public const string empty = "empty";
         public const string SmallMonster = "SmallMonster";
         public const string BigMonster = "BigMonster";
-        
+
+        // <summary>
         // Room accessor
         // Gets the room type
+        // </summary>
         public string RoomType { get; }
 
+        // <summary>
         // Room constructor
         // Initialises a new instance of Room
+        // </summary>
+        // <param name="roomType"> Type of room. </param>
         public Room(string roomType)
         {
             RoomType = roomType;
         }
 
+        // <summary>
         // Generates a random room
+        // </summary>
         public static Room GetRandomRoom()
         {
             int randomNumber = rnd.Next(1, 4);
@@ -40,10 +49,14 @@ namespace DungeonExplorer
             }
         }
 
+        // <summary>
         // A short description is assigned to each room type
         // Details whether there is a monster in the room or not
         // Also details whether player takes damage or not
         // and takes that damage away from players health
+        // </summary>
+        // <param name="player"> Players object. </param>
+        // <param name="currentRooms"> A reference to current number of rooms entered. </param>
         public void GetDescription(Player player, ref int currentRooms)
         {
             switch (RoomType)

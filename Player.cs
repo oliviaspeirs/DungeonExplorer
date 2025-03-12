@@ -5,13 +5,20 @@ namespace DungeonExplorer
 {
     public class Player
     {
+        // <summary>
         // Player attributes
-        //Players Name, Health and inventory
+        // Players Name, Health and inventory
+        // </summary>
         private string _name;
         private int _health;
         private List<string> _inventory;
 
+        // <summary>
         // Player constructors
+        // </summary>
+        // <param name="name"> Players name. </param>
+        // <param name="health"> Players initial health. </param>
+        // <param name="inventory"> Players initial inventory. </param>
         public Player(string name, int health, List<string> inventory) 
         {
             _name = name;
@@ -19,8 +26,10 @@ namespace DungeonExplorer
             _inventory = inventory;
         }
 
+        // <summary>
         // Player accessors
         // Gets and sets values for the players name
+        // </summary>
         public string Name
         {
             get { return _name; }
@@ -37,7 +46,9 @@ namespace DungeonExplorer
                 }
         }
 
+        // <summary>
         // Sets the players health value and if it dips below 0 or over 100 it just sets it to 0
+        // </summary>
         public int Health
         {
             get { return _health; }
@@ -53,27 +64,37 @@ namespace DungeonExplorer
                 }
         }
 
-
+        // <summary>
         // Gets and sets the players inventory
+        // </summary>
         public List<string> Inventory
         {
             get { return _inventory; }
             set { _inventory = value; }
         }
 
+        // <summary>
         // Adds an item to the players inventory
+        // </summary>
+        // <param name="item"> Name of item being added to inventory. </param>
         public void PickUpItem(string item)
         {
             _inventory.Add(item);
         }
 
+        // <summary>
         // Joins the inventory list into a string and returns it
+        // Adds an item to the players inventory
+        // </summary>
         public string InventoryContents()
         {
             return string.Join(", ", _inventory);
         }
 
+        // <summary>
         // Checks if a certain item is in the players inventory
+        // </summary>
+        // <param name="item"> Name of item you want to check you have. </param>
         public bool CheckInventory(string item)
         {
             return _inventory.Contains(item);
