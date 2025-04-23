@@ -125,7 +125,7 @@ namespace DungeonExplorer
                     else
                     {
                         player.Heal(10);
-                        Console.WriteLine($"You have gained 5 health, you are now at {player.Health} health.");
+                        Console.WriteLine($"You have gained 10 health, you are now at {player.Health} health.");
                         player.Inventory.Remove(itemChoice); 
                     }
                 }
@@ -138,7 +138,7 @@ namespace DungeonExplorer
                     else
                     {
                         player.Heal(20);
-                        Console.WriteLine($"You have gained 10 health, you are now at {player.Health} health.");
+                        Console.WriteLine($"You have gained 20 health, you are now at {player.Health} health.");
                         player.Inventory.Remove(itemChoice);
                     }
                 }
