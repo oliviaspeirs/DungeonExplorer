@@ -5,6 +5,11 @@ namespace DungeonExplorer
 {
     public class Player
     {
+
+        public int X { get; set; } = 0; // Player’s horizontal position on the map
+        public int Y { get; set; } = 0; // Player’s vertical position on the map
+
+
         // <summary>
         // Player attributes
         // Players Name, Health and inventory

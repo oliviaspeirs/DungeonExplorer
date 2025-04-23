@@ -8,6 +8,10 @@ namespace DungeonExplorer
 {
     internal class Game
     {
+        // keeps track of the rooms the player has entered
+        private Dictionary<(int x, int y), Room> map = new Dictionary<(int x, int y), Room>();
+
+
         private Player player; // Player object
         private int currentRooms; // number of rooms passed
         private static Random rnd = new Random();
@@ -34,26 +38,46 @@ namespace DungeonExplorer
             Console.WriteLine("\nDo you wish to go left, right or forward?");
             string decision = Console.ReadLine().ToLower();
 
-            Room nextRoom;
+            
 
             // chooses the next room based on users choice of direction
             switch (decision)
             {
                 case "forward":
+                    player.Y += 1;
+                    break;
                 case "left":
+                    player.X -= 1;
+                    break;
                 case "right":
-                    nextRoom = Room.GetRandomRoom();
-                    itemCheck();    
+                    player.X += 1;    
                     break;
                 default:
                     Console.WriteLine("Invalid input, try again");
                     return;
             }
+
+            Room nextRoom;
+            var currentPosition = (player.X, player.Y);
+
+            if (map.ContainsKey(currentPosition))
+            {
+                nextRoom = map[currentPosition];
+                Console.WriteLine("You've returned to a room you've visited before.");
+            }
+            else
+            {
+                nextRoom = Room.GetRandomRoom();
+                map[currentPosition] = nextRoom;
+                itemCheck(); // Only get items in new rooms
+            }
+
             nextRoom.GetDescription(player, ref currentRooms);
             viewStats();
             viewInventory();
             useItemChoice();
         }
+    
 
         // <summary>
         // randomly decides whether a room contains an item
