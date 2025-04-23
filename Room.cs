@@ -57,7 +57,7 @@ namespace DungeonExplorer
         // </summary>
         // <param name="player"> Players object. </param>
         // <param name="currentRooms"> A reference to current number of rooms entered. </param>
-        public void GetDescription(Player player, ref int currentRooms)
+        public void GetDescription(Creature creature, ref int currentRooms)
         {
             switch (RoomType)
             {
@@ -67,13 +67,13 @@ namespace DungeonExplorer
                     break;
                 case SmallMonster:
                     int damage = rnd.Next(10, 21);
-                    player.Health -= damage;
+                    creature.TakeDamage(damage);
                     Console.WriteLine($"You encounter a small monster, you take {damage} damage");
                     currentRooms++; // Adds 1 to current rooms
                     break;
                 case BigMonster:
                     damage = rnd.Next(21, 31);
-                    player.Health -= damage;
+                    creature.TakeDamage(damage);
                     Console.WriteLine($"You encounter a big monster, you take {damage} damage");
                     currentRooms++; // Adds 1 to current rooms
                     break;
