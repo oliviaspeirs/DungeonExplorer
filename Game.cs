@@ -118,26 +118,26 @@ namespace DungeonExplorer
                 {
                     // Third if statement checks if the player is damaged enough to use the item
                     // If they are, the designated amount of health is added
-                    if (player.Health >= 95)
-                    {
-                        Console.WriteLine("Your health is too high to use this potion");
-                    }
-                    else
-                    {
-                        player.Health += 5;
-                        Console.WriteLine($"You have gained 5 health, you are now at {player.Health} health.");
-                        player.Inventory.Remove(itemChoice); 
-                    }
-                }
-                else if (itemChoice == "R")
-                {
                     if (player.Health >= 90)
                     {
                         Console.WriteLine("Your health is too high to use this potion");
                     }
                     else
                     {
-                        player.Health += 10;
+                        player.Heal(10);
+                        Console.WriteLine($"You have gained 5 health, you are now at {player.Health} health.");
+                        player.Inventory.Remove(itemChoice); 
+                    }
+                }
+                else if (itemChoice == "R")
+                {
+                    if (player.Health >= 80)
+                    {
+                        Console.WriteLine("Your health is too high to use this potion");
+                    }
+                    else
+                    {
+                        player.Heal(20);
                         Console.WriteLine($"You have gained 10 health, you are now at {player.Health} health.");
                         player.Inventory.Remove(itemChoice);
                     }
@@ -247,7 +247,7 @@ namespace DungeonExplorer
                 // start of actual game loop
                 // loops until they escape the maze or their health drops to 0
                 playing = false;
-                while (currentRooms < 5 && player.Health > 0)
+                while (currentRooms < 10 && player.Health > 0)
                 {
                     PlayersGo();
 

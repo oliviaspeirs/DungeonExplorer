@@ -17,5 +17,11 @@ namespace DungeonExplorer
         }
 
         public abstract void TakeDamage(int amount);
+
+        public virtual void Heal(int amount)
+        {
+            Health += amount;
+            if (Health > 100) Health = 100;  // Ensure health doesn't exceed 100
+        }
     }
 }
