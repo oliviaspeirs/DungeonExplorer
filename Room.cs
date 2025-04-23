@@ -45,7 +45,7 @@ namespace DungeonExplorer
                 case 3:
                     return new Room(BigMonster);
                 default:
-                    return new Room(empty);
+                    return new Room(SmallMonster);
             }
         }
 
