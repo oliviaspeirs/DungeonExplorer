@@ -23,5 +23,7 @@ namespace DungeonExplorer
             Health += amount;
             if (Health > 100) Health = 100;  // Ensure health doesn't exceed 100
         }
+
+        
     }
 }

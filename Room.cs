@@ -66,15 +66,17 @@ namespace DungeonExplorer
                     currentRooms++; // Adds 1 to current rooms
                     break;
                 case SmallMonster:
-                    int damage = rnd.Next(10, 21);
-                    player.TakeDamage(damage);
-                    Console.WriteLine($"You encounter a small monster, you take {damage} damage");
+                    Monster small = new SmallMonster();
+                    int smalldamage = rnd.Next(10, 21);
+                    player.TakeDamage(smalldamage);
+                    Console.WriteLine($"You encounter a {small.Type}, you take {smalldamage} damage");
                     currentRooms++; // Adds 1 to current rooms
                     break;
                 case BigMonster:
-                    damage = rnd.Next(21, 31);
-                    player.TakeDamage(damage);
-                    Console.WriteLine($"You encounter a big monster, you take {damage} damage");
+                    Monster big = new BigMonster();
+                    int bigdamage = rnd.Next(21, 31);
+                    player.TakeDamage(bigdamage);
+                    Console.WriteLine($"You encounter a {big.Type}, you take {bigdamage} damage");
                     currentRooms++; // Adds 1 to current rooms
                     break;
                 default:
