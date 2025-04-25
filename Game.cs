@@ -90,11 +90,11 @@ namespace DungeonExplorer
             {
                 case 1:
                     Console.WriteLine("You've picked up a small health potion (S).");
-                    player.PickUpItem(SmallHealthPotion); // adds item to inventory
+                    player.Inventory.PickUpItem(SmallHealthPotion); // adds item to inventory
                     break;
                 case 2:
                     Console.WriteLine("You've picked up a regular health potion (R).");
-                    player.PickUpItem(RegularHealthPotion); //adds item to inventory
+                    player.Inventory.PickUpItem(RegularHealthPotion); //adds item to inventory
                     break;
                 case 3:
                     return;
@@ -111,7 +111,7 @@ namespace DungeonExplorer
             string itemChoice = Console.ReadLine().ToUpper();
 
             // First if statement checks if the user input is actually in the inventory
-            if (player.CheckInventory(itemChoice) == true)
+            if (player.Inventory.CheckInventory(itemChoice) == true)
             {
                 // Second if statement checks whether the user typed "S" or "R"
                 if (itemChoice == "S")
@@ -126,7 +126,7 @@ namespace DungeonExplorer
                     {
                         player.Heal(10);
                         Console.WriteLine($"You have gained 10 health, you are now at {player.Health} health.");
-                        player.Inventory.Remove(itemChoice); 
+                        player.Inventory.RemoveItem(itemChoice); 
                     }
                 }
                 else if (itemChoice == "R")
@@ -139,7 +139,7 @@ namespace DungeonExplorer
                     {
                         player.Heal(20);
                         Console.WriteLine($"You have gained 20 health, you are now at {player.Health} health.");
-                        player.Inventory.Remove(itemChoice);
+                        player.Inventory.RemoveItem(itemChoice);
                     }
                 }
 
@@ -181,7 +181,7 @@ namespace DungeonExplorer
             switch (inventoryAnswer)
             {
                 case "y":
-                    Console.WriteLine(player.InventoryContents());
+                    Console.WriteLine(player.Inventory.InventoryContents());
                     break;
                 case "n":
                     break;
@@ -226,7 +226,8 @@ namespace DungeonExplorer
                 string playerName = Console.ReadLine();
                 player.Name = playerName;
                 player.Health = 100;
-                player.Inventory = new List<string>();
+                player.Inventory = new Inventory();
+
 
                 Test PlayerTest = new Test(player);
                 PlayerTest.PlayerTesting();
