@@ -17,10 +17,10 @@ namespace DungeonExplorer
         private string _name;
         private Inventory _inventory; // creates an instance of the inventory class
 
-        public Inventory Inventory
+        public List<Item> Items
         {
-            get { return _inventory; }
-            set { _inventory = value; }
+            get { return _items; }
+            set { _items = value; }
         }
 
 
@@ -29,15 +29,19 @@ namespace DungeonExplorer
         // </summary>
         // <param name="name"> Players name. </param>
         // <param name="health"> Players initial health. </param>
-        // <param name="inventory"> Players initial inventory. </param>
-        public Player(string name, int health, List<string> items) : base(health)
+        public Player(string name, int health) : base(health)
         {
             _name = name;
-            _inventory = new Inventory (items);
             X = 0;
             Y = 0;
 
         }
+
+        public Inventory(List<Item> items)
+        {
+            _items = items;
+        }
+
 
         public override void TakeDamage(int amount)
         {

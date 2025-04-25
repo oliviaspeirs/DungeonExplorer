@@ -16,11 +16,7 @@ namespace DungeonExplorer
         private int currentRooms; // number of rooms passed
         private static Random rnd = new Random();
 
-        // <summary>
-        // Defines the different items you can pick up
-        // </summary>
-        public const string SmallHealthPotion = "S";
-        public const string RegularHealthPotion = "R";
+        
 
         public Game()
         {
@@ -90,11 +86,11 @@ namespace DungeonExplorer
             {
                 case 1:
                     Console.WriteLine("You've picked up a small health potion (S).");
-                    player.Inventory.PickUpItem(SmallHealthPotion); // adds item to inventory
+                    player.Inventory.PickUpItem(new SmallHealthPotion()); // adds item to inventory
                     break;
                 case 2:
                     Console.WriteLine("You've picked up a regular health potion (R).");
-                    player.Inventory.PickUpItem(RegularHealthPotion); //adds item to inventory
+                    player.Inventory.PickUpItem(new RegularHealthPotion()); //adds item to inventory
                     break;
                 case 3:
                     return;
@@ -110,45 +106,18 @@ namespace DungeonExplorer
             Console.WriteLine("\nWhat item do you wish to use? S/R");
             string itemChoice = Console.ReadLine().ToUpper();
 
-            // First if statement checks if the user input is actually in the inventory
-            if (player.Inventory.CheckInventory(itemChoice) == true)
+            if (player.Inventory.InventoryContents() == itemChoice)
             {
-                // Second if statement checks whether the user typed "S" or "R"
-                if (itemChoice == "S")
-                {
-                    // Third if statement checks if the player is damaged enough to use the item
-                    // If they are, the designated amount of health is added
-                    if (player.Health >= 90)
-                    {
-                        Console.WriteLine("Your health is too high to use this potion");
-                    }
-                    else
-                    {
-                        player.Heal(10);
-                        Console.WriteLine($"You have gained 10 health, you are now at {player.Health} health.");
-                        player.Inventory.RemoveItem(itemChoice); 
-                    }
-                }
-                else if (itemChoice == "R")
-                {
-                    if (player.Health >= 80)
-                    {
-                        Console.WriteLine("Your health is too high to use this potion");
-                    }
-                    else
-                    {
-                        player.Heal(20);
-                        Console.WriteLine($"You have gained 20 health, you are now at {player.Health} health.");
-                        player.Inventory.RemoveItem(itemChoice);
-                    }
-                }
-
+                Item itemToUse = player.Inventory.GetItemName(itemChoice);
+                itemToUse.Use(player);
+                player.Inventory.RemoveItem(itemChoice);
             }
             else
             {
                 Console.WriteLine("You do not have that item in your inventory.");
             }
         }
+
 
         // <summary>
         // Gives the user the choice to view their stats

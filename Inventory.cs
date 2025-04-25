@@ -9,23 +9,20 @@ namespace DungeonExplorer
 {
     public class Inventory
     {
-        private List<string> _items;
+        private List<Item> _items;
 
         public Inventory()
         {
-            _items = new List<string>();
+            _items = new List<Item>(); 
         }
 
-        public Inventory(List<string> items)
-        {
-            _items = items;
-        }
+       
 
         // <summary>
         // Adds an item to the players inventory
         // </summary>
         // <param name="item"> Name of item being added to inventory. </param>
-        public void PickUpItem(string item)
+        public void PickUpItem(Item item)
         {
             _items.Add(item);
         }
@@ -33,11 +30,12 @@ namespace DungeonExplorer
         // <summary>
         // Checks if a certain item is in the players inventory
         // </summary>
-        // <param name="item"> Name of item you want to check you have. </param>
-        public bool CheckInventory(string item)
+        // <param name="itemname"> Name of item you want to check you have. </param>
+        public bool CheckInventory(string itemName)
         {
-            return _items.Contains(item);
+            return _items.Any(i => i.ItemName == itemName);
         }
+
 
         // <summary>
         // Joins the inventory list into a string and returns it
@@ -45,7 +43,7 @@ namespace DungeonExplorer
         // </summary>
         public string InventoryContents()
         {
-            return string.Join(", ", _items);
+            return _items.Count > 0 ? string.Join(", ", _items.Select(i => i.ItemName)) : "Inventory is empty.";
         }
 
         // <summary>
@@ -57,9 +55,25 @@ namespace DungeonExplorer
             set { _items = value; }
         }
 
-        public void RemoveItem(string item)
+        public Item GetItemName(string itemName)
         {
-            _items.Remove(item);
+            foreach (var item in _items)
+            {
+                if (item.ItemName == itemName)
+                {
+                    return item;
+                }
+            }
+            return null;  // Return null if no match is found
+        }
+
+        public void RemoveItem(string itemName)
+        {
+            var item = GetItemByName(itemName);
+            if (item != null)
+            {
+                _items.Remove(item);
+            }
         }
 
     }
