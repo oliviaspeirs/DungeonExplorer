@@ -9,11 +9,11 @@ namespace DungeonExplorer
 {
     public class Inventory
     {
-        private List<Item> _items;
+        private Inventory _inventory;
 
         public Inventory()
         {
-            _items = new List<Item>(); 
+            _inventory = new List<Item>(); 
         }
 
        
@@ -24,7 +24,7 @@ namespace DungeonExplorer
         // <param name="item"> Name of item being added to inventory. </param>
         public void PickUpItem(Item item)
         {
-            _items.Add(item);
+            _inventory.Add(item);
         }
 
         // <summary>
@@ -33,7 +33,7 @@ namespace DungeonExplorer
         // <param name="itemname"> Name of item you want to check you have. </param>
         public bool CheckInventory(string itemName)
         {
-            return _items.Any(i => i.ItemName == itemName);
+            return _inventory.Any(i => i.ItemName == itemName);
         }
 
 
@@ -43,21 +43,21 @@ namespace DungeonExplorer
         // </summary>
         public string InventoryContents()
         {
-            return _items.Count > 0 ? string.Join(", ", _items.Select(i => i.ItemName)) : "Inventory is empty.";
+            return _inventory.Count > 0 ? string.Join(", ", _inventory.Select(i => i.ItemName)) : "Inventory is empty.";
         }
 
         // <summary>
         // Gets and sets the players inventory
         // </summary>
-        public List<string> Items
+        public List<Item> Items
         {
-            get { return _items; }
-            set { _items = value; }
+            get { return _inventory; }
+            set { _inventory = value; }
         }
 
         public Item GetItemName(string itemName)
         {
-            foreach (var item in _items)
+            foreach (var item in _inventory)
             {
                 if (item.ItemName == itemName)
                 {
@@ -69,10 +69,10 @@ namespace DungeonExplorer
 
         public void RemoveItem(string itemName)
         {
-            var item = GetItemByName(itemName);
+            var item = GetItemName(itemName);
             if (item != null)
             {
-                _items.Remove(item);
+                _inventory.Remove(item);
             }
         }
 

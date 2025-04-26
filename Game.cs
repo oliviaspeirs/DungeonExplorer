@@ -15,13 +15,14 @@ namespace DungeonExplorer
         private Player player; // Player object
         private int currentRooms; // number of rooms passed
         private static Random rnd = new Random();
+        private Inventory _inventory; // creates an instance of the inventory class
 
-        
 
         public Game()
         {
+            _inventory = new Inventory();
             // Creates a new player and defaults number of rooms passed to 0
-            player = new Player("", 0, new List<string>());
+            player = new Player("", 0, _inventory);
             currentRooms = 0;
         }
 
@@ -195,7 +196,7 @@ namespace DungeonExplorer
                 string playerName = Console.ReadLine();
                 player.Name = playerName;
                 player.Health = 100;
-                player.Inventory = new Inventory();
+                //player.Inventory = new Inventory();
 
 
                 Test PlayerTest = new Test(player);
