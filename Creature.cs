@@ -18,6 +18,8 @@ namespace DungeonExplorer
 
         public abstract void TakeDamage(int amount);
 
+        public abstract void Attack(Creature target);
+
         public virtual void Heal(int amount)
         {
             Health += amount;

@@ -44,6 +44,42 @@ namespace DungeonExplorer
             if (Health < 0) Health = 0; // Ensure health doesn't go below 0
         }
 
+        public override void Attack(Creature target)
+        {
+            // Random damage between 10 and 20
+            Random rnd = new Random();
+            int attacksuccess = rnd.Next(1, 101); // Generates a number between 10 and 20
+            if (attacksuccess > 50)
+            {
+                target.TakeDamage(100);
+                if (target.Health > 0) //If its a big monster
+                {
+                    int attacksuccessBig = rnd.Next(1, 101);
+                    if (attacksuccessBig > 75) 
+                    {
+                        Console.WriteLine("You attack and manage to defeat this monster!");
+                        target.Health = 0;
+                    }
+                    else {
+                        Console.WriteLine("You attack but do not manage to defeat this monster.");
+                        target.Health += 100;
+                    }
+                    
+                }
+                else
+                {
+                    Console.WriteLine("You attack and manage to defeat this monster!");
+                    target.Health = 0;
+                }
+            }
+            else
+            {
+                Console.WriteLine("You attack but do not manage to defeat this monster.");
+                target.TakeDamage(0);
+            }
+        }
+
+
         // <summary>
         // Player accessors
         // Gets and sets values for the players name

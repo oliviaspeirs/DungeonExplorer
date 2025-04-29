@@ -24,26 +24,48 @@ namespace DungeonExplorer
 
     public class SmallMonster : Monster
     {
-        public SmallMonster() : base("SmallMonster", 25) { } // name and health of small monster
+        public SmallMonster() : base("SmallMonster", 100) { } // name and health of small monster
 
         // Override the TakeDamage method from Creature class
         public override void TakeDamage(int amount)
         {
             Health -= amount;
-            Console.WriteLine($"The Big monster has taken {amount} damage.");
             if (Health < 0) Health = 0; // Ensure health doesn't go below 0
         }
+
+        public override void Attack(Creature target)
+        {
+            // Random damage between 10 and 20
+            Random rnd = new Random();
+            int damage = rnd.Next(10, 21); // Generates a number between 10 and 20
+            Console.WriteLine($"You encounter a small monster, you take {damage} damage!");
+
+            // Apply damage to the target (the player)
+            target.TakeDamage(damage);
+        }
+
+
     }
 
     public class BigMonster : Monster
     {
-        public BigMonster() : base("BigMonster", 50) { }
+        public BigMonster() : base("BigMonster", 150) { }
 
         public override void TakeDamage(int amount)
         {
             Health -= amount;
-            Console.WriteLine($"The Big monster has taken {amount} damage.");
             if (Health < 0) Health = 0; // Ensure health doesn't go below 0
+        }
+
+        public override void Attack(Creature target)
+        {
+            // Random damage between 10 and 20
+            Random rnd = new Random();
+            int damage = rnd.Next(20, 31); // Generates a number between 10 and 20
+            Console.WriteLine($"You encounter a big monster, you take {damage} damage!");
+
+            // Apply damage to the target (the player)
+            target.TakeDamage(damage);
         }
     }
 }

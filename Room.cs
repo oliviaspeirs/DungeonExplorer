@@ -18,7 +18,10 @@ namespace DungeonExplorer
         // Room accessor
         // Gets the room type
         // </summary>
-        public string RoomType { get; }
+        public string RoomType { get; set; }
+
+        // Flag to track if the monster has been defeated
+        public bool MonsterDefeated { get; private set; }
 
         // <summary>
         // Room constructor
@@ -28,6 +31,7 @@ namespace DungeonExplorer
         public Room(string roomType)
         {
             RoomType = roomType;
+            MonsterDefeated = false;
         }
 
         // <summary>
@@ -59,31 +63,56 @@ namespace DungeonExplorer
         // <param name="currentRooms"> A reference to current number of rooms entered. </param>
         public void GetDescription(Creature player, ref int currentRooms)
         {
+            Monster monster = null;
+
+            if (MonsterDefeated)
+            {
+                Console.WriteLine("This room has already been cleared. There is no monster here.");
+                currentRooms++; // Proceed to the next room without any monster encounter
+                return; // Skip the encounter since the monster is defeated
+            }
+
             switch (RoomType)
             {
                 case empty:
                     Console.WriteLine("The room is empty, you are safe and can move onto the next room!");
-                    currentRooms++; // Adds 1 to current rooms
                     break;
                 case SmallMonster:
-                    Monster small = new SmallMonster();
-                    int smalldamage = rnd.Next(10, 21);
-                    player.TakeDamage(smalldamage);
-                    Console.WriteLine($"You encounter a {small.Type}, you take {smalldamage} damage");
-                    currentRooms++; // Adds 1 to current rooms
+                    monster = new SmallMonster();
                     break;
                 case BigMonster:
-                    Monster big = new BigMonster();
-                    int bigdamage = rnd.Next(21, 31);
-                    player.TakeDamage(bigdamage);
-                    Console.WriteLine($"You encounter a {big.Type}, you take {bigdamage} damage");
-                    currentRooms++; // Adds 1 to current rooms
+                    monster = new BigMonster();
                     break;
                 default:
                     Console.WriteLine("error occured");
                     break;
 
             }
+
+            if (monster != null)
+            {
+                // Monster attacks the player
+                monster.Attack(player); // Calls the Attack method of the specific monster (SmallMonster or BigMonster)
+
+                // If player is still alive, the player can retaliate
+                if (player.Health > 0)
+                {
+                    player.Attack(monster); // The player attacks the monster, and this will invoke the player's Attack method
+                    if (monster.Health == 0)
+                    {
+                        MonsterDefeated = true;
+                        RoomType = empty;
+                    }
+                    else
+                    {
+                        MonsterDefeated = false;
+                    }
+
+                }
+            }
+
+            currentRooms++; // Proceed to the next room
+
         }
 
     }
