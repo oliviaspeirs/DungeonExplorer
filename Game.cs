@@ -107,7 +107,7 @@ namespace DungeonExplorer
             Console.WriteLine("\nWhat item do you wish to use? S/R");
             string itemChoice = Console.ReadLine().ToUpper();
 
-            if (player.Inventory.InventoryContents() == itemChoice)
+            if (player.Inventory.CheckInventory(itemChoice))
             {
                 Item itemToUse = player.Inventory.GetItemName(itemChoice);
                 itemToUse.Use(player);

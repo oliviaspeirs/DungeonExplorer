@@ -9,7 +9,7 @@ namespace DungeonExplorer
 {
     public class Inventory
     {
-        private Inventory _inventory;
+        private List<Item>_inventory;
 
         public Inventory()
         {

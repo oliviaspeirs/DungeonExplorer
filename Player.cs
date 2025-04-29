@@ -17,6 +17,12 @@ namespace DungeonExplorer
         private string _name;
         private Inventory _inventory; // creates an instance of the inventory class
 
+        public Inventory Inventory
+        {
+            get { return _inventory; }
+        }
+
+
 
         // <summary>
         // Player constructors
@@ -28,7 +34,7 @@ namespace DungeonExplorer
             _name = name;
             X = 0;
             Y = 0;
-            _inventory = inventory;
+            _inventory = inventory ?? new Inventory();
         }
 
 
