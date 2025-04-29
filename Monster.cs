@@ -38,7 +38,7 @@ namespace DungeonExplorer
             // Random damage between 10 and 20
             Random rnd = new Random();
             int damage = rnd.Next(10, 21); // Generates a number between 10 and 20
-            Console.WriteLine($"You encounter a small monster, you take {damage} damage!");
+            Console.WriteLine($"Oh no, a small monster! you take {damage} damage!");
 
             // Apply damage to the target (the player)
             target.TakeDamage(damage);
@@ -62,7 +62,7 @@ namespace DungeonExplorer
             // Random damage between 10 and 20
             Random rnd = new Random();
             int damage = rnd.Next(20, 31); // Generates a number between 10 and 20
-            Console.WriteLine($"You encounter a big monster, you take {damage} damage!");
+            Console.WriteLine($"Oh no, a big monster! you take {damage} damage!");
 
             // Apply damage to the target (the player)
             target.TakeDamage(damage);
