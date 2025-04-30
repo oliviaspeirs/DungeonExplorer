@@ -16,6 +16,7 @@ namespace DungeonExplorer
         // </summary>
         private string _name;
         private Inventory _inventory; // creates an instance of the inventory class
+        public Weapon equippedWeapon { get; set; }
 
         public Inventory Inventory
         {
@@ -35,6 +36,7 @@ namespace DungeonExplorer
             X = 0;
             Y = 0;
             _inventory = inventory ?? new Inventory();
+            equippedWeapon = null;
         }
 
 
@@ -48,35 +50,49 @@ namespace DungeonExplorer
         {
             // Random damage between 10 and 20
             Random rnd = new Random();
-            int attacksuccess = rnd.Next(1, 101); // Generates a number between 10 and 20
-            if (attacksuccess > 50)
+            if (equippedWeapon != null)
             {
-                target.TakeDamage(100);
-                if (target.Health > 0) //If its a big monster
+                int attacksuccess = equippedWeapon.HitChance;
+                target.TakeDamage(equippedWeapon.DamageValue);
+                Console.WriteLine("You attack and manage to defeat this monster!");
+                target.Health = 0;
+            }
+            else
+            {
+                int attacksuccess = rnd.Next(1, 101); // Generates a number between 10 and 20
+                if (attacksuccess > 50)
                 {
-                    int attacksuccessBig = rnd.Next(1, 101);
-                    if (attacksuccessBig > 75) 
+                    target.TakeDamage(100);
+                    if (target.Health > 0) //If its a big monster
+                    {
+
+                        int attacksuccessBig = rnd.Next(1, 101);
+                        if (attacksuccessBig > 75)
+                        {
+                            Console.WriteLine("You attack and manage to defeat this monster!");
+                            target.Health = 0;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You attack but do not manage to defeat this monster.");
+                            target.Health += 100;
+                        }
+
+                    }
+                    else
                     {
                         Console.WriteLine("You attack and manage to defeat this monster!");
                         target.Health = 0;
                     }
-                    else {
-                        Console.WriteLine("You attack but do not manage to defeat this monster.");
-                        target.Health += 100;
-                    }
-                    
                 }
                 else
                 {
-                    Console.WriteLine("You attack and manage to defeat this monster!");
-                    target.Health = 0;
+                    Console.WriteLine("You attack but do not manage to defeat this monster.");
+                    target.TakeDamage(0);
                 }
             }
-            else
-            {
-                Console.WriteLine("You attack but do not manage to defeat this monster.");
-                target.TakeDamage(0);
-            }
+            
+            
         }
 
 

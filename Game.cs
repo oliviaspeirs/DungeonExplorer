@@ -82,7 +82,7 @@ namespace DungeonExplorer
         public void itemCheck()
         {
 
-            int randomNumber = rnd.Next(1, 4);
+            int randomNumber = rnd.Next(1, 5);
             switch (randomNumber)
             {
                 case 1:
@@ -94,6 +94,10 @@ namespace DungeonExplorer
                     player.Inventory.PickUpItem(new RegularHealthPotion()); //adds item to inventory
                     break;
                 case 3:
+                    Console.WriteLine("You've picked up a Sword (SW). \nEquipping a sword makes it easier to kill monsters!");
+                    player.Inventory.PickUpItem(new Sword()); // adds item to inventory
+                    break;
+                case 4:
                     return;
 
             }
@@ -104,11 +108,15 @@ namespace DungeonExplorer
         // </summary>
         public void useItem()
         {
-            Console.WriteLine("\nWhat item do you wish to use? S/R");
+            Console.WriteLine("\nWhat item do you wish to use? S/R/SW");
             string itemChoice = Console.ReadLine().ToUpper();
 
             if (player.Inventory.CheckInventory(itemChoice))
             {
+                if (itemChoice == "SW")
+                {
+                    player.equippedWeapon = (Weapon)player.Inventory.GetItemName(itemChoice);
+                }
                 Item itemToUse = player.Inventory.GetItemName(itemChoice);
                 itemToUse.Use(player);
                 player.Inventory.RemoveItem(itemChoice);

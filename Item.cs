@@ -12,6 +12,11 @@ namespace DungeonExplorer
     
         public string ItemName { get; protected set; }
 
+        public Item(string itemName)
+        {
+            ItemName = itemName;
+        }
+
         // All items should be usable by a player
         public abstract void Use(Player player);
 
@@ -22,12 +27,35 @@ namespace DungeonExplorer
 
     }
 
+    public class Weapon : Item
+    {
+        public int DamageValue { get; set; }
+        public int HitChance { get; set; }
+        public Weapon(string name, int damageValue, int hitChance) : base(name)
+        {
+            
+            DamageValue = damageValue;
+            HitChance = hitChance;
+        }
+        public override void Use(Player player)
+        {
+            Console.WriteLine($"{player.Name} has equipped the {ItemName}.");
+        }
+    }
+
+    public class Sword : Weapon
+    {
+        public Sword() : base("SW", 150, 80)
+        {
+        }
+    }
+
     public class SmallHealthPotion : Item
     {
-        public SmallHealthPotion()
+        public SmallHealthPotion() : base("S")
         {
-            ItemName = "S";
         }
+    
 
         public override void Use(Player player)
         {
@@ -45,9 +73,8 @@ namespace DungeonExplorer
 
     public class RegularHealthPotion : Item
     {
-        public RegularHealthPotion()
+        public RegularHealthPotion() : base("R")
         {
-            ItemName = "R";
         }
 
         public override void Use(Player player)
