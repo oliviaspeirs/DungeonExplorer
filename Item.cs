@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    public abstract class Item
+    public abstract class Item : IUsable
     {
     
         public string ItemName { get; protected set; }

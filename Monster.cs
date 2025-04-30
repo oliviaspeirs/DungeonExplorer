@@ -10,11 +10,13 @@ namespace DungeonExplorer
     public abstract class Monster : Creature
     {
         public string Type { get; set; }  // The type of monster, e.g., "SmallMonster" or "BigMonster"
+        public int Health { get; set; }
 
         // Constructor for Monster
         public Monster(string type, int health) : base(health)
         {
             Type = type;
+            Health = health;
         }
 
         
