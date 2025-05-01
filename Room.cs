@@ -5,38 +5,38 @@ namespace DungeonExplorer
 {
     public class Room
     {
-        // <summary>
-        // Room attributes
-        // Defines the different types of rooms
-        // </summary>
+        /// <summary>
+        /// Room attributes
+        /// Defines the different types of rooms
+        /// </summary>
         private static Random rnd = new Random();
         public const string empty = "empty";
         public const string SmallMonster = "SmallMonster";
         public const string BigMonster = "BigMonster";
 
-        // <summary>
-        // Room accessor
-        // Gets the room type
-        // </summary>
+        /// <summary>
+        /// Room accessor
+        /// Gets the room type
+        /// </summary>
         public string RoomType { get; set; }
 
-        // Flag to track if the monster has been defeated
+        /// Tracks if the monster has been defeated
         public bool MonsterDefeated { get; private set; }
 
-        // <summary>
-        // Room constructor
-        // Initialises a new instance of Room
-        // </summary>
-        // <param name="roomType"> Type of room. </param>
+        /// <summary>
+        /// Room constructor
+        /// Initialises a new instance of Room
+        /// </summary>
+        /// <param name="roomType"> Type of room. </param>
         public Room(string roomType)
         {
             RoomType = roomType;
             MonsterDefeated = false;
         }
 
-        // <summary>
-        // Generates a random room
-        // </summary>
+        /// <summary>
+        /// Generates a random room
+        /// </summary>
         public static Room GetRandomRoom()
         {
             int randomNumber = rnd.Next(1, 4);
@@ -53,23 +53,26 @@ namespace DungeonExplorer
             }
         }
 
-        // <summary>
-        // A short description is assigned to each room type
-        // Details whether there is a monster in the room or not
-        // Also details whether player takes damage or not
-        // and takes that damage away from players health
-        // </summary>
-        // <param name="player"> Players object. </param>
-        // <param name="currentRooms"> A reference to current number of rooms entered. </param>
+        /// <summary>
+        /// A short description is assigned to each room type
+        /// Details whether there is a monster in the room or not
+        /// Also details whether player takes damage or not
+        /// and takes that damage away from players health
+        /// </summary>
+        /// <param name="player"> Players object. </param>
+        /// <param name="currentRooms"> A reference to current number of rooms entered. </param>
         public void GetDescription(Creature player, ref int currentRooms)
         {
             Monster monster = null;
-
+            
+            /// <summary> 
+            /// Checks to see if a monster was defeated in this room.
+            /// </summary>
             if (MonsterDefeated)
             {
                 Console.WriteLine("This room has already been cleared. There is no monster here.");
-                currentRooms++; // Proceed to the next room without any monster encounter
-                return; // Skip the encounter since the monster is defeated
+                currentRooms++; /// Proceed to the next room without any monster encounter
+                return; /// Skip the encounter since the monster is defeated
             }
 
             switch (RoomType)
@@ -91,13 +94,13 @@ namespace DungeonExplorer
 
             if (monster != null)
             {
-                // Monster attacks the player
+                /// Monster attacks the player
                 monster.Attack(player); // Calls the Attack method of the specific monster (SmallMonster or BigMonster)
 
-                // If player is still alive, the player can retaliate
+                /// If player is still alive, the player can retaliate
                 if (player.Health > 0)
                 {
-                    player.Attack(monster); // The player attacks the monster, and this will invoke the player's Attack method
+                    player.Attack(monster); /// The player attacks the monster, and this will invoke the player's Attack method
                     if (monster.Health == 0)
                     {
                         MonsterDefeated = true;
@@ -111,7 +114,7 @@ namespace DungeonExplorer
                 }
             }
 
-            currentRooms++; // Proceed to the next room
+            currentRooms++; /// Proceed to the next room
 
         }
 
